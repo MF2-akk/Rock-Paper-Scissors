@@ -2,16 +2,20 @@ import random
 
 objects = ["paper", "rock", "scissors"]
 
-def SecondPlayer():
+def second_player() -> str:
     randomIndex = random.randint(0, 2)
     return objects[randomIndex]
 
-print("please, type 0(paper), 1(rock) or 2(scissors)")
-char =int(input())
+char =int(input("please, type 0(paper), 1(rock) or 2(scissors)"))
 
+if char > 2 or char < 0:
+   print("please, try again")
+   char = int(input("please, type 0(paper), 1(rock) pr 2(scissors)"))
+   if char >2 or char < 0:
+              quit()
 
 #-1 is lose, 0 is draw and 1 is win
-def Rules(a, b):
+def rules(a, b) -> int:
     if a == objects[0] and b == objects[1]:
         return 1
     if a == objects[0] and b == objects[2]:
@@ -31,8 +35,7 @@ def Rules(a, b):
     if a == objects[2] and b == objects[2]:
         return 0
 
-gameResult = Rules(objects[char], SecondPlayer())
-
+gameResult = rules(objects[char], second_player())
 if gameResult == 1:
     print("you're win")
 if gameResult == 0:
